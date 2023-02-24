@@ -1,8 +1,12 @@
 # <p align="center"><a href=https://softuni.bg/trainings/3708/js-applications-june-2022> JS Applications <a/>  
 
-In the "JS Applications" course, you will learn what **HTTP requests** are and how to use them. You will learn about **REST Services**, what a **Baas** (backend as a service) is and how to work with it, what **asynchronous code** means (Promises, using async/await), what **Templating and Routing are**. During the course, you will create a **Single Page Application** using the techniques learned from previous lectures, on which you will be assessed. You will understand what is the **architecture of an application** and how to properly structure your applications. By the end of the course, you'll explore different design patterns and their practical guidelines, create your own web components, use the **Web Components** standard, and build a **Webback environment from scratch**.
+In the course "JS Applications", participants learn about **HTTP requests**, **REST services**, and working with **Baas** (backend as a service). The program covers topics such as **asynchronous code**, including Promises and using async/await, as well as **Templating and Routing**.
 
-## Skills you will **acquire**
+Throughout the program, a dynamic **Single Page Application** is created, leveraging the techniques covered in previous lectures. This application is assessed to help solidify understanding of the topics covered. Participants also gain an understanding of the **architecture of application**s and how to structure them properly for maximum efficiency.
+
+By the end of the course, participants have the opportunity to explore different design patterns and their practical guidelines. They are able to create web components using the **Web Components** standard and build a **Webpack environment from scratch**. Overall, this program offers a comprehensive learning experience that equips participants with valuable skills to succeed in the world of web development.
+
+## Skills **acquired**
 
 - What is HTTP and how to make requests
 - Creating simple Single Page applications
