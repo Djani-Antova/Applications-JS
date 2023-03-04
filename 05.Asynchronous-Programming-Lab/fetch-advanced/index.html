@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>My Books</h1>
+
+    <input type="text" id="title" name="title" />
+    <button id="add-book">Add</button>
+    <button id="load-books">Load</button>
+
+    <ul id="book-list"></ul>
+
+    <script>
+      const baseUrl = "http://localhost:3030/jsonstore/";
+      const titleElement = document.getElementById("title");
+      const buttonElement = document.getElementById("load-books");
+      const addButtonElement = document.getElementById("add-book");
+      const bookList = document.getElementById("book-list");
+
+      buttonElement.addEventListener("click", () => {
+        fetch(`${baseUrl}/collections`) // OR fetch(`${baseUrl}/collections`, {method: 'GET'})
+          .then((res) => res.json())
+          .then((data) => {
+            bookList.innerHTML = "";
+
+            let books = Object.values(data);
+            books.forEach((book) => {
+              let bookElement = document.createElement("li");
+              bookElement.textContent = book.title;
+              bookList.appendChild(bookElement);
+            });
+          });
+        //   .catch(err => console.log(err));
+      });
+
+      addButtonElement.addEventListener("click", () => {
+        let title = titleElement.value;
+
+        fetch(`${baseUrl}/collections`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ title }),
+        })
+          .then((res) => res.json())
+          .then((book) => {
+            let bookElement = document.createElement("li");
+            bookElement.textContent = book.title;
+            bookList.appendChild(bookElement);
+          });
+      });
+    </script>
+  </body>
+</html>
