@@ -1,0 +1,12 @@
+{ "afb7d305-8cf4-41a0-8bcd-787c2e7f5dcd": {
+        "label": "Wiper Fluid",
+        "price": 15,
+        "qty": 56,
+        "_id": "afb7d305-8cf4-41a0-8bcd-787c2e7f5dcd"
+    },
+    "e7e39774-c869-49a4-82e1-66f6186ef80e": {
+        "label": "Brake Disk",
+        "price": 80,
+        "qty": 22,
+        "_id" : "e7e39774-c869-49a4-82e1-66f6186ef80e"
+    }}
