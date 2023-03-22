@@ -1,0 +1,23 @@
+
+1. Extract project files and examine them
+2. Set NPM project (package.json + libraries)
+    2.1 npm i  (в ресурсите има dependencies, затова само npm i )
+    2.2 open with live server just to see how it looks like, 
+    then open http://127.0.0.1:5500/ and have a view, 
+    then stop our server e.g. click on Port:5500;
+    2.3 npm start  , will show => http://localhost:3000  
+    2.3. npm i page lit-html
+3. Examine HTML files and determine templates, broad template structure
+    3.1 Create example.html with the element that I want to see(example.html)
+4. Create folder src in the task;
+    4.1. In src-folder create api-folder;
+    4.2. In api-folder create file api.js => code for requests;
+    4.3. In src-folder create file app.js
+5. Start with api.js
+4. Create application entry point and route placeholder (to know that we have working navigation)
+5. Write remote request function (first test the request code and verify that all work)
+6. Implement each view
+6.1. Create static page template
+6.2. Implement data (fetch) request logic
+6.3. Add parametters to templates
+6.4. Add event listeners (if any)

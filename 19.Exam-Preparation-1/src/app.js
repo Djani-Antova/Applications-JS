@@ -6,14 +6,15 @@ import { homePage } from './views/home.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { logout } from './data/auth.js';
+import { catalogPage } from './views/catalog.js';
 
 
-//TODO change render root depending on project HTML structure
-const root = document.body;
+const root = document.getElementById('wrapper');
 
 page(decorateContext); // this is the global middleware
 page('index.html', '/');
 page('/', homePage);
+page('/catalog', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
 page('/logout', logoutAction)
@@ -26,7 +27,7 @@ function decorateContext(ctx, next) { // actually this is the middleware
     next()
 }
 
-//TODO Inject dependencies
+
 function renderView(content) {
     const userData = getUserData();
     render(layoutTemplate(userData, content), root)
