@@ -14,7 +14,7 @@ import { editPage } from './views/edit.js';
 
 const root = document.getElementById('wrapper');
 
-page(decorateContext); // this is the global middleware
+page(decorateContext); 
 page('index.html', '/');
 page('/', homePage);
 page('/catalog', catalogPage);
@@ -27,7 +27,7 @@ page('/logout', logoutAction)
 
 page.start();
 
-function decorateContext(ctx, next) { // actually this is the middleware
+function decorateContext(ctx, next) { 
     ctx.render = renderView;
 
     next()

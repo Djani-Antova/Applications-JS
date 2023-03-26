@@ -4,7 +4,7 @@ import { createSubmitHandler } from '../util.js';
 
 
 const registerTemplate = (onRegister) => html`
-<section id="register">
+  <section id="register">
           <div class="form">
             <h2>Register</h2>
             <form class="login-form" @submit=${onRegister}>
@@ -36,7 +36,7 @@ export function registerPage(ctx) {
     ctx.render(registerTemplate(createSubmitHandler(onRegister)));
 
     
-    
+
     async function onRegister({email, password, 're-password': repass}, form) {
         if(email == '' || password == '') {
             return alert('Áll fields are required')
@@ -45,7 +45,8 @@ export function registerPage(ctx) {
             return alert('Passwords don\'t match')
         }
         await register(email, password);
-        form.reset();        
+        form.reset();
+       
         ctx.page.redirect('/catalog');
     }
 

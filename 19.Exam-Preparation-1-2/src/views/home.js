@@ -2,7 +2,7 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 
 
 const homeTemplate = () => html`
- <section id="home">
+  <section id="home">
           <img
             src="./images/pngkey.com-hunting-png-6697165-removebg-preview.png"
             alt="home"

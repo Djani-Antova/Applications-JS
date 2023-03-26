@@ -4,12 +4,12 @@ import { getUserData } from '../util.js';
 
 
 const detailsTemplate = (offer, onDelete) => html`
- <section id="details">
+   <section id="details">
           <div id="details-wrapper">
             <img id="details-img" src=${offer.imageUrl} alt="example1" />
             <p id="details-title">${offer.title}</p>
             <p id="details-category">
-            Category: <span id="categories">${offer.category}</span>
+              Category: <span id="categories">${offer.category}</span>
             </p>
             <p id="details-salary">
               Salary: <span id="salary-number">${offer.salary}</span>
@@ -28,38 +28,41 @@ const detailsTemplate = (offer, onDelete) => html`
                 >
               </div>
             </div>
-            <!-- <p>Applications: <strong id="applications">1</strong></p> -->
+           <!-- <p>Applications: <strong id="applications">1</strong></p>-->
 
             <!--Edit and Delete are only for creator-->
-            
             ${offer.canEdit ? html`
             <div id="action-buttons">
               <a href="/catalog/${offer._id}/edit" id="edit-btn">Edit</a>
               <a @click=${onDelete} href="javascript:void(0)" id="delete-btn">Delete</a>
 
               <!--Bonus - Only for logged-in users ( not authors )-->
-              <!-- <a href="" id="apply-btn">Apply</a> -->
+              <!--<a href="" id="apply-btn">Apply</a>-->
             </div>` : null}
-         
+           
           </div>
-        </section>`;       
+        </section>`;
+
 
 export async function detailsPage(ctx) {
-    const id = ctx.params.id;
+  const id = ctx.params.id;
 
-    const offer = await getById(id);
+  const offer = await getById(id)
 
-    const userData = getUserData();
-    if( userData && userData._id == offer._ownerId) {
-      offer.canEdit = true;
+  const userData = getUserData();
+
+  if(userData && userData._id == offer._ownerId) {
+    offer.canEdit = true;
+  }
+
+  ctx.render(detailsTemplate(offer, onDelete));
+
+  async function onDelete(){
+    const choice = confirm('Are you sure?')
+
+    if(choice) {
+      await deleteOffer(id);
+      ctx.page.redirect('/catalog')
     }
-    ctx.render(detailsTemplate(offer, onDelete));
-
-    async function onDelete(){
-      const choice = confirm('Are you sure?');
-      if(choice) {
-        await deleteOffer(id);
-        ctx.page.redirect('/catalog')
-      }
-    }
+  }
 }

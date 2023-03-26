@@ -2,6 +2,7 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 import { login } from '../data/auth.js';
 import { createSubmitHandler } from '../util.js';
 
+//в loginTemplate може да се изисква някаква валидация, зависи от задачата
 
 const loginTemplate = (onLogin) => html`
 <section id="login">
@@ -24,18 +25,16 @@ const loginTemplate = (onLogin) => html`
         </section>`;
 
 export function loginPage(ctx) {
-    ctx.render(loginTemplate(createSubmitHandler(onLogin)));
-
-   
+    ctx.render(loginTemplate(createSubmitHandler(onLogin)));    
+    
     async function onLogin({email, password}, form) {
+        
         if(email == '' || password == '') {
             return alert('Áll fields are required')
         }
         await login(email, password);
         form.reset();
-       
+        
         ctx.page.redirect('/catalog');
     }
-
-
 }

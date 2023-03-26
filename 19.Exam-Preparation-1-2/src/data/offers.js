@@ -1,9 +1,10 @@
-import { del, get, post, put } from "./api.js";
+import { get, post, put, del } from "./api.js";
 
 const endpoints = {
-    catalog: '/data/offers?sortBy=_createdOn%20desc',
+    catalog: '/data/offers?sortBy=_createdOn%20desc', //линка се взема целия от условието на catalog(dashbord)
     byId: '/data/offers/'
 }
+
 
 export async function getAllOffers() {
     return get(endpoints.catalog)
@@ -21,6 +22,6 @@ export async function updateOffer(id, data) {
     return put(endpoints.byId + id, data)
 }
 
-export async function deleteOffer(id) {
+export async function deleteOffer(id){
     return del(endpoints.byId + id)
 }
