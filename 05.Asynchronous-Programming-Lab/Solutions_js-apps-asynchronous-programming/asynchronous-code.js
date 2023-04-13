@@ -10,4 +10,3 @@ setTimeout(() => {
 
 console.log('End');
 
-Element.addEvenetListener('click', callback)
