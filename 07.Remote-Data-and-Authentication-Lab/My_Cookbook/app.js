@@ -24,6 +24,19 @@ window.addEventListener('load', () => {
         let recipeElement = document.createElement('article');
         recipeElement.classList.add('preview');
 
+        recipeElement.addEventListener('click', () => {
+            fetch(`${baseUrl}/jsonstore/cookbook/details/${recipe._id}`)
+            .then (res => res.json())
+            .then(details => {
+                const mainElement = document.querySelector('main');
+                mainElement.innerHTML = '';
+
+                mainElement.appendChild(renderDeatiledRecipe(details)) 
+
+            })
+
+        });
+
         //WARNING XSS!
         recipeElement.innerHTML = `
             <div class="title">
@@ -35,6 +48,34 @@ window.addEventListener('load', () => {
         `;
         return recipeElement
     }
+    function renderDeatiledRecipe(details) {
+        let recipeElement = document.createElement('article');
+
+        recipeElement.innerHTML = ` 
+        <article>
+            <h2>${details.name}</h2>
+            <div class="band">
+                <div class="thumb">
+                    <img src="${details.img}">
+                </div>
+                <div class="ingredients">
+                    <h3>Ingredients:</h3>
+                    <ul>
+                      ${details.ingredients.map(x => `<li>${x}</li>`).join('')}
+                    </ul>
+                </div>
+            </div>
+            <div class="description">
+                <h3>Preparation:</h3>
+                ${details.steps.map(x => `<p>${x}</p>`).join('')}
+            </div>
+        </article>
+    `;
+    return recipeElement;
+
+    }
+
+   
     
     //     }
 
