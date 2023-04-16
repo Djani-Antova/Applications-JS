@@ -1,67 +1,97 @@
-
+const baseUrl = 'http://localhost:3030'
 
 window.addEventListener('load', () => {
+   
+       fetch(`${baseUrl}/jsonstore/cookbook/recipes`)
+       .then(res => res.json())
+        .then( recipes => {
+            renderRecipes(Object.values(recipes))
+        });
 
-    async function cookBook() {
-        const url = 'http://localhost:3030/jsonstore/cookbook/recipes';
+    });
 
-        const res = await fetch(url);
-        const data = await res.json()
-        //console.log(data);
-        const recipes = Object.entries(data)
+    function renderRecipes(recipes) {
+        const mainElement = document.querySelector('main');
 
-        for (let i = 0; i < recipes.length; i++) {
-            const currentRecipe = recipes[i];
-            // console.log(currentRecipe[1].name);
-            // console.log(currentRecipe[1].img);
+        mainElement.innerHTML = '';
 
-            const main = document.querySelector('main');
-            const loading = main.querySelector('p');
-            loading.textContent = '';
-
-            const article = createElement('article', main, { class: 'preview' });
-
-            const title = createElement('div', article, { class: 'title' });
-            const h2 = createElement('h2', title);
-            h2.textContent = currentRecipe[1].name;
-
-            const small = createElement('div', article, { class: 'small' });
-            createElement('img', small, { src: currentRecipe[1].img });
-
-        }
-
+        recipes.forEach(x => {
+            mainElement.appendChild(createRecipe(x))
+        });
 
     }
+    function createRecipe(recipe){
+        let recipeElement = document.createElement('article');
+        recipeElement.classList.add('preview');
 
-    function createElement(type, parent, attributes = {}, children = []) {
-        const element = document.createElement(type);
-
-        for (const [key, value] of Object.entries(attributes)) {
-            if (key === 'class') {
-                element.setAttribute('class', value);
-            } else {
-                element.setAttribute(key, value);
-            }
-        }
-
-        for (const child of children) {
-            if (typeof child === 'string') {
-                element.appendChild(document.createTextNode(child));
-            } else {
-                element.appendChild(child);
-            }
-        }
-
-        if (parent) {
-            parent.appendChild(element);
-        }
-
-        return element;
+        //WARNING XSS!
+        recipeElement.innerHTML = `
+            <div class="title">
+                <h2>${recipe.name}</h2>
+            </div>
+            <div class="small">
+                <img src="${recipe.img}">
+            </div>
+        `;
+        return recipeElement
     }
+    
+    //     }
 
-    cookBook()
+    //     async function getDetails(id) {
+    //         const url = `http://localhost:3030/jsonstore/cookbook/details/${id}`;
+    //         const res = await fetch(url);
+    //         const data = await res.json()
+
+    //         const details = Object.entries(data);
+    //         //console.log(details); //[Array(2), Array(2), Array(2), Array(2), Array(2)]
+
+    //         // call getDetails function for each recipe
+    //         details.forEach(r => {
+    //             //console.log(r);
+    //             for (let i = 0; i < r.length; i++) {
+    //                 const key = r[0];
+    //                 const value = r[1]
+                   
+    //             console.log(value);
+    //             }
+    //             //console.log(recipe);
+    //         });
+
+    //     }
 
 
-})
+    // }
+
+    // function createElement(type, parent, attributes = {}, children = []) {
+    //     const element = document.createElement(type);
+
+    //     for (const [key, value] of Object.entries(attributes)) {
+    //         if (key === 'class') {
+    //             element.setAttribute('class', value);
+    //         } else {
+    //             element.setAttribute(key, value);
+    //         }
+    //     }
+
+    //     for (const child of children) {
+    //         if (typeof child === 'string') {
+    //             element.appendChild(document.createTextNode(child));
+    //         } else {
+    //             element.appendChild(child);
+    //         }
+    //     }
+
+    //     if (parent) {
+    //         parent.appendChild(element);
+    //     }
+
+    //     return element;
+    // }
+
+
+
+
+
 
 
