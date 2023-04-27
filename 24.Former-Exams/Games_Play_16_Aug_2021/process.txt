@@ -1,0 +1,51 @@
+[  ] Unpack project and install dependancies
+        1. npm i (terminal becomes 'powershell');
+        2. in the same terminal => cd server => node server.js (same terminal becomes 'node-server');
+        3. in NEW terminal (with '+') => npm start to start REST service (the second terminal becomes 'node');
+            !!! REFRESH everytime because it doesn't do it automatically!!
+        4. for the TESTs - NEW terminal, to start them => npm test (the terminal becomes 'node', if we stop it 'cmd')
+[  ] Create app entry point with placeholder handlers
+[  ] Implement rendering dependancy injection and create placeholder views
+     * Create middleware to do dependancy injection (to have function ready to render, important part
+        in it is the target element that contains the information that we have rendered)
+
+Implement views
+- Home
+[  ] Rendering functionality in Data service
+[  ] Template and view control
+
+- Catalog
+[  ] Extend reading functionality in Data service
+[  ] Template and view control
+
+- Login, Register and Logout
+[  ] Create user service 
+[  ] Template and view control
+[  ] Submitting form and error handling
+[  ] Logout from navbar
+
+- Navigation header
+[  ] Session middleware 
+[  ] Extend rendering middleware to include navbar
+[  ] Template and view control
+
+- Create
+[  ] Writing functionality in Data service
+[  ] Template and view control
+[  ] Submitting form and error handling
+
+- Details
+[  ] Extend reading functionality in Data service
+[  ] Template and view control
+
+- Edit and Delete
+[  ] Extend writing functionality in Data service
+[  ] Template and view control
+[  ] Submitting form and error handling // same as create - just copy & 
+                                        // add const gameId = ctx.params.id;
+                                        // replace 'create' with update and add gameId as first param
+
+- Bonus: Comments
+[  ] Create Comments service
+[  ] Template and view control
+[  ] Submitting form and error handling
